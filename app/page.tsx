@@ -4,7 +4,14 @@ import Message from "./components/message/message";
 export default function Home() {
   return (
     <div>
-      
+      <Message />
+      <Message />
+      <Message />
+      <Message />
+      <Message />
+      <Message />
+      <Message />
+      <Message />
       <Message />
     </div>
   );

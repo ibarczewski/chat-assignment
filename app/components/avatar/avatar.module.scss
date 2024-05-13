@@ -1,3 +1,14 @@
-.avatar {
-    background-color: blue;
+.avatarImage { 
+    height: 2rem;
+    width: 2rem;
+    border-radius: 12px;
+    display: flex;
+}
+
+.avatarContainer {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    height: 100%;
+    margin: 0 .5rem 0 0;
 }
