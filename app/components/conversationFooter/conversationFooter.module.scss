@@ -1,0 +1,23 @@
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    position: sticky;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    border-top: 1px solid lightgray;
+    padding: 0 0 0 0;
+ 
+    .textInput {
+        box-sizing: border-box;        
+        box-shadow: none;
+        border: none;
+        height: 36px;
+        width: 100%;
+        text-indent: 1rem;
+    }
+}
+
