@@ -13,11 +13,6 @@ export default function Home() {
         <Message />
         <Message />
         <Message />
-        <Message />
-        <Message />
-        <Message />
-        <Message />
-        <Message />
       </div>
       <ConversationFooter />
     </div>
