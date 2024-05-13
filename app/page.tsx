@@ -1,7 +1,7 @@
 import Avatar from "./components/avatar/avatar";
 import ConversationFooter from "./components/conversationFooter/conversationFooter";
 import ConversationHeader from "./components/conversationHeader/conversationHeader";
-import Message from "./components/message/message";
+import MessageHistory from "./components/message/messageHistory";
 import styles from './page.module.scss';
 
 export default function Home() {
@@ -9,10 +9,7 @@ export default function Home() {
     <div className={styles.container}>
       <ConversationHeader />
       <div>
-        <Message />
-        <Message />
-        <Message />
-        <Message />
+        <MessageHistory />
       </div>
       <ConversationFooter />
     </div>
