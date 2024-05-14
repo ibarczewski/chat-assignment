@@ -13,7 +13,7 @@ export type MessageStore = MessageState & MessageActions
 
 export const initMessageStore = (): MessageState => {
   return { messageGroups: [
-    {userId: 1, messages: [ 
+    {userId: 1, date: new Date(), messages: [ 
       { message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod', isGif: false}, 
       { message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod', isGif: false}]
     },
@@ -34,7 +34,7 @@ export const createMessageStore = (
       if (state.messageGroups[state.messageGroups.length - 1].userId === userId) {
         newMessageGroups[newMessageGroups.length - 1].messages.push({message, isGif})
       } else {        
-        newMessageGroups.push({userId, messages: [{message, isGif}]})
+        newMessageGroups.push({userId, date: new Date(), messages: [{message, isGif}]})
       }
 
       return { messages: newMessageGroups}

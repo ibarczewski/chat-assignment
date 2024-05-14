@@ -1,6 +1,7 @@
 type MessageGroup = {
     userId: number,
-    messages: Message[]
+    messages: Message[],
+    date: Date,
 }
 
 type User = {

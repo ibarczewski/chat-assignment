@@ -18,7 +18,7 @@ const Message = ({messageGroup}: MessageProps) => {
         setUser(users.find(user => user.id === messageGroup.userId));
     }, [])
     
-    const date = format(new Date(), "p");
+    const date = format(messageGroup.date, "p");
 
     return user && <div className={styles.container}>
         <Avatar src={user.avatarUrl} />
