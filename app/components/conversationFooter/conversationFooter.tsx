@@ -8,7 +8,7 @@ import GifPrompt from '../gifPrompt/gifPrompt';
 
 const ConversationFooter = () => {
     const [showGifPrompt, setShowGifPrompt] = useState(false);
-    const { addMessage, messageGroups } = useMessageStore(
+    const { addMessage } = useMessageStore(
         (state) => state,
       )
 

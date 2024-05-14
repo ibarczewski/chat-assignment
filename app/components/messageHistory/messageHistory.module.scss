@@ -1,3 +1,8 @@
 .messageHistory {
     padding: 0 0 36px 0;
+
+    @media (prefers-color-scheme: dark) {
+        background-color: $dark-blue;
+        color: $light-teal;
+      }
 }
