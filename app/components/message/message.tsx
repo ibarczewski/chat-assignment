@@ -21,17 +21,14 @@ const Message = ({messageGroup}: MessageProps) => {
     const date = format(new Date(), "p");
 
     return user && <div className={styles.container}>
-        <>
-            <Avatar src={user.avatarUrl} />
-            <div className={styles.textContainer}>
-                <div className={styles.header}>
-                    <div className={styles.username}>{user.name}</div>
-                    <div className={styles.time}>{date}</div>
-                </div>
-                {messageGroup.messages.map((message, messageIndex) => message.isGif ? <img className={styles.gif} key={messageIndex} src={message.message} /> : <p key={messageIndex} className={styles.content}>{message.message}</p>)}
+        <Avatar src={user.avatarUrl} />
+        <div className={styles.textContainer}>
+            <div className={styles.header}>
+                <div className={styles.username}>{user.name}</div>
+                <div className={styles.time}>{date}</div>
             </div>
-        </>
-
+            {messageGroup.messages.map((message, messageIndex) => message.isGif ? <img className={styles.gif} key={messageIndex} src={message.message} /> : <p key={messageIndex} className={styles.content}>{message.message}</p>)}
+        </div>
     </div> 
 }
 

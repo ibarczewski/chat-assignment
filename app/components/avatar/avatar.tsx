@@ -6,7 +6,7 @@ type AvatarProps = {
 }
 
 const Avatar = ({src}: AvatarProps) => {
-     return <div className={styles.avatarContainer}>
+     return <div className={styles.container}>
           <img className={styles.avatarImage} src={src ?? './no-avatar.jpg'} />
      </div> 
 }
