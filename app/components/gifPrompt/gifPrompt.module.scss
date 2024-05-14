@@ -2,13 +2,40 @@
     display: flex;
     flex-direction: row;
     position: sticky;
-    height: 40%;
+    height: 12em;
     flex-wrap: wrap;
+    overflow: scroll;
+    flex-basis: 25%;
+    
 
-    img {
-        height: 5%;
-        width: 5%;
-        margin: .1rem;
-        overflow: scroll;
+    button {
+        appearance: none;
+        border-color: transparent;
+        border: none;
+        background-color: rgb(255, 255, 255);
+        height: 6rem;
+        width: 25%;
+
+
+        @media screen and (min-width: 481px) {
+            width: 25%;
+        }
+
+        @media screen and (min-width: 1023px) {
+            width: 20%;
+        }
+
+        @media screen and (min-width: 1023px) {
+            width: 10%;
+        }
+
+        @media screen and (min-width: 2439px) {
+            width: 5%;
+        }
+
+        img {
+            height: 100%;
+            width: 100%;
+        }
     }
 }
