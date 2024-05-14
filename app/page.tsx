@@ -7,6 +7,7 @@ import Message from "./components/message/message";
 import styles from './page.module.scss';
 import { useMessageStore } from "./providers/message-store-provider";
 import { LoremIpsum, loremIpsum } from "lorem-ipsum";
+import GifPrompt from "./components/gifPrompt/gifPrompt";
 
 export default function Home() {
   const { messageGroups, addMessage } = useMessageStore(
@@ -23,9 +24,6 @@ const lorem = new LoremIpsum();
 
     return () => clearInterval(interval);
   }, [])
-  
-  
-
   
   return (
     <div className={styles.container}>

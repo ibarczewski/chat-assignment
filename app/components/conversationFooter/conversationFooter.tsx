@@ -3,14 +3,15 @@
 import { useMessageStore } from '@/app/providers/message-store-provider';
 import GifButton from '../gifButton/gifButton';
 import styles from './conversationFooter.module.scss';
-import { SyntheticEvent } from 'react';
+import { useState } from 'react';
 
 const ConversationFooter = () => {
+    const [hideGifPrompt, setHideGifPrompt] = useState(true);
     const { addMessage, messageGroups } = useMessageStore(
         (state) => state,
       )
 
-    console.log(messageGroups);
+    console.log('hide', hideGifPrompt);
 
     const handleKeyDown = (e: any) => {
         
@@ -20,9 +21,17 @@ const ConversationFooter = () => {
         }
     }
 
-    return <div className={styles.container}>
-        <input className={styles.textInput} type='text' placeholder='Message Peter' onKeyDown={handleKeyDown}></input>
-        <GifButton />
+    return <div>
+            <div className={styles.container}>
+                <div className={styles.wrapper}>
+                    <input className={styles.textInput} type='text' placeholder='Message Peter' onKeyDown={handleKeyDown}></input>
+                    <GifButton handleTap={() => setHideGifPrompt(!hideGifPrompt)} />
+                </div>
+                <div className={`${hideGifPrompt ? styles.hidden : ''}`}>
+                    <div>hi.</div>
+                </div>
+
+            </div>
     </div>
 }
 
