@@ -15,7 +15,7 @@ const ConversationFooter = () => {
     const handleKeyDown = (e: any) => {
         
         if (e.key === 'Enter') {
-            addMessage({user: 'Dave', message: e.target.value})
+            addMessage({user: {name: 'Ian', avatarUrl: 'https://i.pravatar.cc/150?img=53'}, message: e.target.value})
             e.target.value = '';
         }
     }

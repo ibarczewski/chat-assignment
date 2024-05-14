@@ -13,8 +13,7 @@ export type MessageStore = MessageState & MessageActions
 
 export const initMessageStore = (): MessageState => {
   return { messageGroups: [
-    {user: 'Peter', messages: ['Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod', 'consectetur adipiscing elit, sed do eiusmod']},
-    {user: 'Dave', messages: ['Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod', 'consectetur adipiscing elit, sed do eiusmod']},
+    {user: {name: 'Peter', avatarUrl: 'https://i.pravatar.cc/150'}, messages: ['Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod', 'consectetur adipiscing elit, sed do eiusmod']},
   ] }
 }
 
@@ -29,9 +28,11 @@ export const createMessageStore = (
     ...initState,
     addMessage: ({user, message}) => set((state) => {
       const newMessageGroups = state.messageGroups;
-      if (state.messageGroups[state.messageGroups.length - 1].user === user) {
+      if (state.messageGroups[state.messageGroups.length - 1].user.name === user.name) {
+        console.log(user);
         newMessageGroups[newMessageGroups.length - 1].messages.push(message)
       } else {
+        console.log(user);
         newMessageGroups.push({user, messages: [message]})
       }
 

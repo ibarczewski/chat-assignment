@@ -1,9 +1,14 @@
 type MessageGroup = {
-    user: string,
+    user: User,
     messages: string[]
 }
 
+type User = {
+    name: string,
+    avatarUrl: string
+}
+
 type Message = {
-    user: string,
+    user: User,
     message: string,
 }
