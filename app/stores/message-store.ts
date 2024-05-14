@@ -2,7 +2,7 @@
 import { createStore } from 'zustand/vanilla'
 
 export type MessageState = {
-  messages: Message[]
+  messageGroups: MessageGroup[]
 }
 
 export type MessageActions = {
@@ -12,15 +12,14 @@ export type MessageActions = {
 export type MessageStore = MessageState & MessageActions
 
 export const initMessageStore = (): MessageState => {
-  return { messages: [
-    {user: 'Peter', message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod'},
-    {user: 'Peter', message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod'},
-    {user: 'Dave', message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod'},
+  return { messageGroups: [
+    {user: 'Peter', messages: ['Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod', 'consectetur adipiscing elit, sed do eiusmod']},
+    {user: 'Dave', messages: ['Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod', 'consectetur adipiscing elit, sed do eiusmod']},
   ] }
 }
 
 export const defaultInitState: MessageState = {
-  messages: [],
+  messageGroups: [],
 }
 
 export const createMessageStore = (
@@ -28,6 +27,15 @@ export const createMessageStore = (
 ) => {
   return createStore<MessageStore>()((set) => ({
     ...initState,
-    addMessage: ({user, message}) => set((state) => ({ messages: [...state.messages, {user, message}]  })),
+    addMessage: ({user, message}) => set((state) => {
+      const newMessageGroups = state.messageGroups;
+      if (state.messageGroups[state.messageGroups.length - 1].user === user) {
+        newMessageGroups[newMessageGroups.length - 1].messages.push(message)
+      } else {
+        newMessageGroups.push({user, messages: [message]})
+      }
+
+      return { messages: newMessageGroups}
+    }),
   }))
 }
