@@ -1,15 +1,16 @@
 type MessageGroup = {
-    user: User,
+    userId: number,
     messages: string[]
 }
 
 type User = {
+    id: number,
     name: string,
     avatarUrl: string
 }
 
 type Message = {
-    user: User,
-    message?: string,
-    gif?: string
+    userId: number,
+    message: string,
+    // gif?: string
 }

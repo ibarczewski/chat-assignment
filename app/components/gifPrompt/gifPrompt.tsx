@@ -35,7 +35,7 @@ const GifPrompt = () => {
 
     return <div className={styles.container}>
         {
-            gifs.map((gif, index) => <button onClick={() => addMessage({user: {name: 'Ian', avatarUrl: 'https://i.pravatar.cc/150?img=53'}, message: 'giffing'})}>
+            gifs.map((gif, index) => <button key={index} onClick={() => addMessage({userId: 2, message: 'giffing'})}>
                 <img key={index} src={gif.images.downsized.url} />
             </button> )
         }

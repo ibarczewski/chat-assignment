@@ -4,20 +4,28 @@ import { useMessageStore } from '@/app/providers/message-store-provider';
 import Avatar from '../avatar/avatar';
 import styles from './message.module.scss';
 import { format } from 'date-fns';
+import { useEffect, useState } from 'react';
+import users from '@/app/mocks/users';
 
 type MessageProps = {
     messageGroup: MessageGroup
 }
 
 const Message = ({messageGroup}: MessageProps) => {
+    const [user, setUser] = useState(null);
+    
+    useEffect(() => {
+        setUser(users.find(user => user.id === messageGroup.userId));
+    }, [])
+    
     const date = format(new Date(), "p");
 
-    return <div className={styles.container}>
+    return user && <div className={styles.container}>
         <>
-            <Avatar src={messageGroup.user.avatarUrl} />
+            <Avatar src={user.avatarUrl} />
             <div className={styles.textContainer}>
                 <div className={styles.header}>
-                    <div className={styles.username}>{messageGroup.user.name}</div>
+                    <div className={styles.username}>{user.name}</div>
                     <div className={styles.time}>{date}</div>
                 </div>
                 {messageGroup.messages.map((message, messageIndex) => <p key={messageIndex} className={styles.content}>{message}</p>)}

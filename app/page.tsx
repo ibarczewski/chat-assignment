@@ -18,7 +18,7 @@ const lorem = new LoremIpsum();
 
   useEffect(() => {
     const interval = setInterval(() => {
-      addMessage({user: {name: 'Peter', avatarUrl: 'https://i.pravatar.cc/150'}, message: lorem.generateSentences(3)});
+      addMessage({userId: 1, message: lorem.generateSentences(3)});
       console.log('log!');
     }, 7000)
 
