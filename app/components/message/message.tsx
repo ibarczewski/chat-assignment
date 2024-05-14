@@ -28,7 +28,7 @@ const Message = ({messageGroup}: MessageProps) => {
                     <div className={styles.username}>{user.name}</div>
                     <div className={styles.time}>{date}</div>
                 </div>
-                {messageGroup.messages.map((message, messageIndex) => message.isGif ? <img key={messageIndex} src={message.message} /> : <p key={messageIndex} className={styles.content}>{message.message}</p>)}
+                {messageGroup.messages.map((message, messageIndex) => message.isGif ? <img className={styles.gif} key={messageIndex} src={message.message} /> : <p key={messageIndex} className={styles.content}>{message.message}</p>)}
             </div>
         </>
 
