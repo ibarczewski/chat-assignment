@@ -12,8 +12,6 @@ const ConversationFooter = () => {
         (state) => state,
       )
 
-    console.log('hide', showGifPrompt);
-
     const handleKeyDown = (e: any) => {
         
         if (e.key === 'Enter') {
@@ -29,7 +27,7 @@ const ConversationFooter = () => {
                     <GifButton handleTap={() => setShowGifPrompt(!showGifPrompt)} />
                 </div>
                 {
-                    showGifPrompt && <div><GifPrompt /></div>
+                    showGifPrompt && <div><GifPrompt handleSentGif={() => setShowGifPrompt(false)} /></div>
                 }
 
             </div>

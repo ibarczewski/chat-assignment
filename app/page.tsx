@@ -16,10 +16,11 @@ export default function Home() {
 
 const lorem = new LoremIpsum();
 
+console.log(messageGroups);
+
   useEffect(() => {
     const interval = setInterval(() => {
       addMessage(1, { message: lorem.generateSentences(3), isGif: false});
-      console.log('log!');
     }, 7000)
 
     return () => clearInterval(interval);

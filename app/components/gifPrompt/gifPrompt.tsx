@@ -15,7 +15,7 @@ async function getData() {
     return res;
 }
 
-const GifPrompt = () => {
+const GifPrompt = ({handleSentGif}) => {
     const [gifs, setGifs] = useState([]);
 
     useEffect(() => {
@@ -32,9 +32,14 @@ const GifPrompt = () => {
         (state) => state,
       )
 
+    const handleOnClick = (gif) => {
+        addMessage(2, { message: gif.images.downsized.url, isGif: true })
+        handleSentGif();
+    };
+
     return <div className={styles.container}>
         {
-            gifs.map((gif, index) => <button key={index} onClick={() => addMessage(2, { message: 'giffing', isGif: true})}>
+            gifs.map((gif, index) => <button key={index} onClick={() => handleOnClick(gif)}>
                 <img key={index} src={gif.images.downsized.url} />
             </button> )
         }

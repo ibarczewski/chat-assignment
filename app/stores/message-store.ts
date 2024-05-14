@@ -29,14 +29,12 @@ export const createMessageStore = (
 ) => {
   return createStore<MessageStore>()((set) => ({
     ...initState,
-    addMessage: (userId, {message}) => set((state) => {
+    addMessage: (userId, {message, isGif}) => set((state) => {
       const newMessageGroups = state.messageGroups;
       if (state.messageGroups[state.messageGroups.length - 1].userId === userId) {
-        console.log(userId);
-        newMessageGroups[newMessageGroups.length - 1].messages.push({message, isGif: false})
-      } else {
-        console.log(userId);
-        newMessageGroups.push({userId, messages: [{message, isGif: false}]})
+        newMessageGroups[newMessageGroups.length - 1].messages.push({message, isGif})
+      } else {        
+        newMessageGroups.push({userId, messages: [{message, isGif}]})
       }
 
       return { messages: newMessageGroups}
