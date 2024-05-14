@@ -6,14 +6,17 @@ export type MessageState = {
 }
 
 export type MessageActions = {
-  addMessage: (message: Message) => void
+  addMessage: (userId: number, message: Message) => void
 }
 
 export type MessageStore = MessageState & MessageActions
 
 export const initMessageStore = (): MessageState => {
   return { messageGroups: [
-    {userId: 1, messages: ['Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod', 'consectetur adipiscing elit, sed do eiusmod']},
+    {userId: 1, messages: [ 
+      { message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod', isGif: false}, 
+      { message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod', isGif: false}]
+    },
   ] }
 }
 
@@ -26,14 +29,14 @@ export const createMessageStore = (
 ) => {
   return createStore<MessageStore>()((set) => ({
     ...initState,
-    addMessage: ({userId, message}) => set((state) => {
+    addMessage: (userId, {message}) => set((state) => {
       const newMessageGroups = state.messageGroups;
       if (state.messageGroups[state.messageGroups.length - 1].userId === userId) {
         console.log(userId);
-        newMessageGroups[newMessageGroups.length - 1].messages.push(message)
+        newMessageGroups[newMessageGroups.length - 1].messages.push({message, isGif: false})
       } else {
         console.log(userId);
-        newMessageGroups.push({userId, messages: [message]})
+        newMessageGroups.push({userId, messages: [{message, isGif: false}]})
       }
 
       return { messages: newMessageGroups}

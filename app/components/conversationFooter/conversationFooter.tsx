@@ -17,7 +17,7 @@ const ConversationFooter = () => {
     const handleKeyDown = (e: any) => {
         
         if (e.key === 'Enter') {
-            addMessage({userId: 2, message: e.target.value})
+            addMessage(2, { message: e.target.value, isGif: false})
             e.target.value = '';
         }
     }

@@ -15,6 +15,7 @@ const Message = ({messageGroup}: MessageProps) => {
     const [user, setUser] = useState(null);
     
     useEffect(() => {
+        // TODO: fix this!
         setUser(users.find(user => user.id === messageGroup.userId));
     }, [])
     
@@ -28,7 +29,7 @@ const Message = ({messageGroup}: MessageProps) => {
                     <div className={styles.username}>{user.name}</div>
                     <div className={styles.time}>{date}</div>
                 </div>
-                {messageGroup.messages.map((message, messageIndex) => <p key={messageIndex} className={styles.content}>{message}</p>)}
+                {messageGroup.messages.map((message, messageIndex) => <p key={messageIndex} className={styles.content}>{message.message}</p>)}
             </div>
         </>
 

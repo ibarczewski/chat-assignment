@@ -18,7 +18,7 @@ const lorem = new LoremIpsum();
 
   useEffect(() => {
     const interval = setInterval(() => {
-      addMessage({userId: 1, message: lorem.generateSentences(3)});
+      addMessage(1, { message: lorem.generateSentences(3), isGif: false});
       console.log('log!');
     }, 7000)
 

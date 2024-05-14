@@ -1,6 +1,6 @@
 type MessageGroup = {
     userId: number,
-    messages: string[]
+    messages: Message[]
 }
 
 type User = {
@@ -10,7 +10,6 @@ type User = {
 }
 
 type Message = {
-    userId: number,
     message: string,
-    // gif?: string
+    isGif: boolean
 }
