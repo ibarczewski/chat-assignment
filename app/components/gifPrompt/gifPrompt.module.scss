@@ -3,4 +3,12 @@
     flex-direction: row;
     position: sticky;
     height: 40%;
+    flex-wrap: wrap;
+
+    img {
+        height: 5%;
+        width: 5%;
+        margin: .1rem;
+        overflow: scroll;
+    }
 }

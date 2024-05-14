@@ -10,5 +10,6 @@ type User = {
 
 type Message = {
     user: User,
-    message: string,
+    message?: string,
+    gif?: string
 }

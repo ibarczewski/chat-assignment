@@ -4,14 +4,15 @@ import { useMessageStore } from '@/app/providers/message-store-provider';
 import GifButton from '../gifButton/gifButton';
 import styles from './conversationFooter.module.scss';
 import { useState } from 'react';
+import GifPrompt from '../gifPrompt/gifPrompt';
 
 const ConversationFooter = () => {
-    const [hideGifPrompt, setHideGifPrompt] = useState(true);
+    const [showGifPrompt, setShowGifPrompt] = useState(false);
     const { addMessage, messageGroups } = useMessageStore(
         (state) => state,
       )
 
-    console.log('hide', hideGifPrompt);
+    console.log('hide', showGifPrompt);
 
     const handleKeyDown = (e: any) => {
         
@@ -25,11 +26,11 @@ const ConversationFooter = () => {
             <div className={styles.container}>
                 <div className={styles.wrapper}>
                     <input className={styles.textInput} type='text' placeholder='Message Peter' onKeyDown={handleKeyDown}></input>
-                    <GifButton handleTap={() => setHideGifPrompt(!hideGifPrompt)} />
+                    <GifButton handleTap={() => setShowGifPrompt(!showGifPrompt)} />
                 </div>
-                <div className={`${hideGifPrompt ? styles.hidden : ''}`}>
-                    <div>hi.</div>
-                </div>
+                {
+                    showGifPrompt && <div><GifPrompt /></div>
+                }
 
             </div>
     </div>
