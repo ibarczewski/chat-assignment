@@ -11,11 +11,12 @@ type MessageProps = {
 }
 
 const Message = ({messageGroup}: MessageProps) => {
-    const [user, setUser] = useState(null);
+    const [user, setUser] = useState<any>(null);
     
     useEffect(() => {
+        const user = users.find(user => user.id === messageGroup.userId);
         // TODO: fix this!
-        setUser(users.find(user => user.id === messageGroup.userId));
+        setUser(user ? user : null);
     }, [])
     
     const date = format(messageGroup.date, "p");

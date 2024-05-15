@@ -12,7 +12,7 @@ const MessageHistory = () => {
         (state) => state,
       )
 
-    const messagesEndRef = useRef(null)
+    const messagesEndRef = useRef<null | HTMLDivElement>(null); 
     const scrollToBottom = () => {
         messagesEndRef.current?.scrollIntoView({block: 'end'})
     }

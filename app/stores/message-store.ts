@@ -37,7 +37,7 @@ export const createMessageStore = (
         newMessageGroups.push({userId, date: new Date(), messages: [{message, isGif}]})
       }
 
-      return { messages: newMessageGroups}
+      return { messageGroups: newMessageGroups}
     }),
   }))
 }
