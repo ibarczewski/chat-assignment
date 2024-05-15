@@ -35,7 +35,7 @@ const ConversationFooter = () => {
                 <div className={styles.wrapper}>
                     <input className={styles.textInput} type='text' placeholder='Message Peter' value={message} onChange={handleOnChange} onKeyDown={handleKeyDown}></input>
                     <div className={styles.actions}>
-                        <SendButton handleTap={() => handleSendMessage()} />
+                        <SendButton disableSending={message.length === 0} handleTap={() => handleSendMessage()} />
                         <GifButton handleTap={() => setShowGifPrompt(!showGifPrompt)} />
                     </div>
                 </div>
