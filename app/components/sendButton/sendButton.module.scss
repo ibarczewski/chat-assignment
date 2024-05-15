@@ -1,0 +1,44 @@
+.container {
+    margin: 0 1rem 0 0;
+
+    background-color: $white;
+    color: black;
+
+    @media (prefers-color-scheme: dark) {
+        color: $dark-blue;
+        background-color: $dark-blue;
+    }
+
+    
+    button { 
+        appearance: none;
+        border-color: transparent;
+        border: none;
+        background-color: rgb(255, 255, 255);
+        padding: 5px 0 0 0;
+
+        @media (prefers-color-scheme: dark) {
+            color: $dark-blue;
+            background-color: $dark-blue;
+        }
+
+        
+        svg {
+            color: black;
+            background-color: white;
+
+            path {
+                fill: black;
+            }
+            
+            @media (prefers-color-scheme: dark) {
+                color: $dark-blue;
+                background-color: $dark-blue;
+
+                path {
+                    fill: $light-teal;
+                }
+            }
+        }
+    }
+}
