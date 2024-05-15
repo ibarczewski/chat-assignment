@@ -6,11 +6,7 @@
     flex-wrap: wrap;
     overflow: scroll;
     flex-basis: 25%;
-
-    ::-webkit-scrollbar {
-        display: none;
-    }
-
+    
     @media (prefers-color-scheme: dark) {
         background-color: $dark-blue;
     }

@@ -1,29 +1,24 @@
 import { useMessageStore } from '@/app/providers/message-store-provider';
 import styles from './gifPrompt.module.scss';
 import { useEffect, useState } from 'react';
+import { giphyService } from '@/app/services/giphyService';
+import LoadingSpinner from '../loadingSpinner/LoadingSpinner';
 
 type GifPromptProps = {
     handleSentGif: () => void
 }
 
-async function getData() {
-    const res = await fetch('https://api.giphy.com/v1/gifs/trending?api_key=Awq5410QQl0416nJogqlsinldM2s9PCA&limit=50')
-   
-    if (!res.ok) {
-      throw new Error('Failed to fetch data')
-    }
-   
-    return res;
-}
-
 const GifPrompt = ({handleSentGif}: GifPromptProps) => {
     const [gifs, setGifs] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
-        getData()
+        setIsLoading(true);
+        giphyService.getTrendingGifs()
             .then((res) => res.json())
             .then((data) => {
                 setGifs(data.data);
+                setIsLoading(false);
             })
             .catch(e => console.log(`Error: ${e.message}`))
     }, []);
@@ -39,9 +34,11 @@ const GifPrompt = ({handleSentGif}: GifPromptProps) => {
 
     return <div className={styles.container}>
         {
-            gifs.map((gif, index) => <button key={index} onClick={() => handleOnClick(gif)}>
-                <img key={index} src={gif.images.downsized.url} />
-            </button> )
+            isLoading 
+            ? <LoadingSpinner />
+            :   gifs.map((gif, index) => <button key={index} onClick={() => handleOnClick(gif)}>
+                    <img key={index} src={gif.images.downsized.url} />
+                </button> )
         }
     </div>
 }

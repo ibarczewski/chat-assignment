@@ -1,8 +1,8 @@
 body {
   margin: 0;
 
-  // @media (prefers-color-scheme: dark) {
-  //   background-color: $dark-blue;
-  //   color: $light-teal;
-  // }
+  @media (prefers-color-scheme: dark) {
+    background-color: $dark-blue;
+}
+
 }
