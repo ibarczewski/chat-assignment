@@ -1,29 +1,63 @@
 import Message from "./message";
 import { render, screen } from '@testing-library/react';
 import { format } from 'date-fns';
-// import {expect, jest, test} from '@jest/globals';
 import '@testing-library/jest-dom'; 
 
 jest.mock('date-fns', () => ({format: jest.fn()}));
 
-describe('message component', () => {
+describe('Message', () => {
     test('renders a formatted date in the header', () => {
-        format.mockReturnValueOnce('3:32 PM');
+        format.mockReturnValue('3:32 PM');
+        const mockDate = new Date();
     
-        render(<Message />);
+        const mockMessageGroups: MessageGroup = {userId: 1, date: mockDate, messages: [
+            { message: 'Mock Message', isGif: false },
+            { message: 'Mock Message', isGif: false },
+            { message: 'Mock Message', isGif: false },
+        ]};
+
+        render(<Message messageGroup={mockMessageGroups} />);
     
+        expect(format).toHaveBeenCalledWith(mockDate, "p");
         expect(screen.getByText('3:32 PM')).toHaveTextContent('3:32 PM');
     })
 
     test('renders a username in the header', () => {
-        render(<Message />);
+        const mockMessageGroups: MessageGroup = {userId: 1, messages: [
+            { message: 'Mock Message', isGif: false },
+            { message: 'Mock Message', isGif: false },
+            { message: 'Mock Message', isGif: false },
+        ]};
+
+        render(<Message messageGroup={mockMessageGroups} />);
     
-        expect(screen.getByText('Peter')).toHaveTextContent('Peter');
+        expect(screen.queryAllByText('Peter').length).toBe(1);
     })
 
     test('renders multiple messages', () => {
-        render(<Message />);
+        const mockMessageGroups: MessageGroup = {userId: 1, messages: [
+            { message: 'Mock Message', isGif: false },
+            { message: 'Mock Message', isGif: false },
+            { message: 'Mock Message', isGif: false },
+        ]};
+
+        render(<Message messageGroup={mockMessageGroups} />);
     
-        expect(screen.getAllByText('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod').length).toBe(2);
+        const images = screen.queryAllByTestId('test-image');
+
+        expect(screen.getAllByTestId('test-paragraph').length).toBe(3);
+        expect(images.length).toBe(0);
+    })
+
+    test('renders images', () => {
+        const mockMessageGroups: MessageGroup = {userId: 1, messages: [
+            { message: 'Mock Link', isGif: true },
+            { message: 'Mock Link', isGif: true },
+            { message: 'Mock Link', isGif: true },
+        ]};
+
+        render(<Message messageGroup={mockMessageGroups} />);
+
+        expect(screen.getAllByTestId('test-image').length).toBe(3);
     })
 });

@@ -13,7 +13,7 @@ const ConversationFooter = () => {
     const { addMessage } = useMessageStore(
         (state) => state,
       )
-    const ref = useRef<null | HTMLDivElement>(null); 
+    const ref = useRef<null | HTMLInputElement>(null); 
 
     const handleKeyDown = (e: any) => {       
         if (e.key === 'Enter' && e.target.value.trim() !== '') {
