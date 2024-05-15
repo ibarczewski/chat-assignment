@@ -7,7 +7,7 @@ const ConversationHeader = () => {
 
     return <div className={styles.container}>
             <Avatar src={user?.avatarUrl} />
-            <div className={styles.username}>Peter Smith</div>
+            <h1 className={styles.username}>Peter Smith</h1>
         </div>
 }
 

@@ -13,7 +13,7 @@ const ConversationFooter = () => {
     const { addMessage } = useMessageStore(
         (state) => state,
       )
-    const ref = useRef(null);
+    const ref = useRef<null | HTMLDivElement>(null); 
 
     const handleKeyDown = (e: any) => {       
         if (e.key === 'Enter' && e.target.value.trim() !== '') {
@@ -29,12 +29,12 @@ const ConversationFooter = () => {
     const handleSendMessage = () => {
         addMessage(2, {message, isGif: false});
         setMessage('');
-        ref.current.focus();
+        ref?.current?.focus();
     }
 
     return <div className={styles.container}>
                 <div className={styles.wrapper}>
-                    <input ref={ref} className={styles.textInput} type='text' placeholder='Message Peter' value={message} onChange={handleOnChange} onKeyDown={handleKeyDown}></input>
+                    <input aria-label="Message" name="messageInput" title="message input" ref={ref} className={styles.textInput} type='text' placeholder='Message Peter' value={message} onChange={handleOnChange} onKeyDown={handleKeyDown}></input>
                     <div className={styles.actions}>
                         <SendButton disableSending={message.length === 0} handleTap={() => handleSendMessage()} />
                         <GifButton handleTap={() => setShowGifPrompt(!showGifPrompt)} />
