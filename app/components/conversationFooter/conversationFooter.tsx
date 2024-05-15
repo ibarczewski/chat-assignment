@@ -3,7 +3,7 @@
 import { useMessageStore } from '@/app/providers/message-store-provider';
 import GifButton from '../gifButton/gifButton';
 import styles from './conversationFooter.module.scss';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import GifPrompt from '../gifPrompt/gifPrompt';
 import SendButton from '../sendButton/sendButton';
 
@@ -13,6 +13,7 @@ const ConversationFooter = () => {
     const { addMessage } = useMessageStore(
         (state) => state,
       )
+    const ref = useRef(null);
 
     const handleKeyDown = (e: any) => {       
         if (e.key === 'Enter' && e.target.value.trim() !== '') {
@@ -28,12 +29,12 @@ const ConversationFooter = () => {
     const handleSendMessage = () => {
         addMessage(2, {message, isGif: false});
         setMessage('');
+        ref.current.focus();
     }
 
-    return <div>
-            <div className={styles.container}>
+    return <div className={styles.container}>
                 <div className={styles.wrapper}>
-                    <input className={styles.textInput} type='text' placeholder='Message Peter' value={message} onChange={handleOnChange} onKeyDown={handleKeyDown}></input>
+                    <input ref={ref} className={styles.textInput} type='text' placeholder='Message Peter' value={message} onChange={handleOnChange} onKeyDown={handleKeyDown}></input>
                     <div className={styles.actions}>
                         <SendButton disableSending={message.length === 0} handleTap={() => handleSendMessage()} />
                         <GifButton handleTap={() => setShowGifPrompt(!showGifPrompt)} />
@@ -42,8 +43,6 @@ const ConversationFooter = () => {
                 {
                     showGifPrompt && <div><GifPrompt handleSentGif={() => setShowGifPrompt(false)} /></div>
                 }
-
-            </div>
     </div>
 }
 

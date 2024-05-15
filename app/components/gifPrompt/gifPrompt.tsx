@@ -42,12 +42,11 @@ const GifPrompt = ({handleSentGif}: GifPromptProps) => {
 
     return <div className={styles.container}>
         {
-            <LoadingSpinner />
-            // isLoading 
-            // ? <LoadingSpinner />
-            // :   gifs.map((gif, index) => <button key={index} onClick={() => handleOnClick(gif)}>
-            //         <img key={index} src={gif.images.downsized?.url} />
-            //     </button> )
+            isLoading 
+            ? <LoadingSpinner />
+            :   gifs.map((gif, index) => <button key={index} onClick={() => handleOnClick(gif)}>
+                    <img key={index} src={gif.images.downsized?.url} />
+                </button> )
         }
     </div>
 }

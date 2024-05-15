@@ -11,7 +11,7 @@ import GifPrompt from "./components/gifPrompt/gifPrompt";
 import MessageHistory from "./components/messageHistory/messageHistory";
 
 export default function Home() {
-  const { messageGroups, addMessage } = useMessageStore(
+  const { addMessage } = useMessageStore(
     (state) => state,
   )
 
@@ -19,8 +19,8 @@ export default function Home() {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      addMessage(1, { message: lorem.generateSentences(3), isGif: false});
-    }, 7000)
+      addMessage(1, { message: lorem.generateSentences(4), isGif: false});
+    }, 5000)
 
     return () => clearInterval(interval);
   }, [])

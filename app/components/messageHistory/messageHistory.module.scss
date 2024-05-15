@@ -1,8 +1,14 @@
 .messageHistory {
     padding: 0 0 36px 0;
 
+    overflow: auto;
+
     @media (prefers-color-scheme: dark) {
         background-color: $dark-blue;
         color: $light-teal;
       }
+}
+
+.anchor {
+  scroll-margin-bottom: 300px;
 }

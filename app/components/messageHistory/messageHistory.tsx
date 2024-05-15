@@ -11,24 +11,30 @@ const MessageHistory = () => {
     const { messageGroups, addMessage } = useMessageStore(
         (state) => state,
       )
-
     const messagesEndRef = useRef<null | HTMLDivElement>(null); 
-    const scrollToBottom = () => {
-        messagesEndRef.current?.scrollIntoView({block: 'end'})
-    }
 
+    // i hate this solution due to ticking a setTimeout, 
+    // but there's a bug with how renders happen in lists
+    // and scrolling, and this is currently the accepted answer is to wait a 
+    // tick and then scroll. i think there's a fix in the canary version.
+    const scrollToBottom = () => setTimeout(() => {
+        messagesEndRef?.current?.scrollIntoView({
+               behavior: "smooth",
+               block: "end",
+           });
+      }, 1) 
+    
+
+    const stringifiedMessages = JSON.stringify(messageGroups);
     useEffect(() => {
-        console.log('scrolling!!', new Date());
         scrollToBottom()
-      }, [JSON.stringify(messageGroups)]);
+      }, [stringifiedMessages]);
 
 
-    return <>
-        <div className={styles.messageHistory}>
-            {messageGroups.map((messageGroup, index) => <Message messageGroup={messageGroup} key={index} />)}     
-        </div>
-        <div ref={messagesEndRef} />
-    </>
+    return <div className={styles.messageHistory}>
+        {messageGroups.map((messageGroup, index) => <Message messageGroup={messageGroup} key={index} />)}     
+        <div className={styles.anchor} ref={messagesEndRef}/>
+    </div>
 }
 
 export default MessageHistory;
