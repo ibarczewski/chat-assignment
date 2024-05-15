@@ -2,7 +2,8 @@
     display: flex;
     flex-direction: row;
     position: sticky;
-    height: 12em;
+    // height: 12em;
+    max-height: 12em;
     flex-wrap: wrap;
     overflow: scroll;
     flex-basis: 25%;

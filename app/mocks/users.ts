@@ -1,6 +1,6 @@
 const users: User[] = [
-    {id: 1, name: 'Peter', avatarUrl: 'https://i.pravatar.cc/150'},
-    {id: 2, name: 'Ian', avatarUrl: 'https://i.pravatar.cc/150?img=53'},
+    {id: 1, name: 'Peter', avatarUrl: './user1.jpeg'},
+    {id: 2, name: 'Ian', avatarUrl: './user2.jpeg'},
   ]
 
 export default users;
