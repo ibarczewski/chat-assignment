@@ -19,8 +19,8 @@ export default function Home() {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      addMessage(1, { message: lorem.generateSentences(4), isGif: false});
-    }, 5000)
+      addMessage(1, { message: lorem.generateSentences(3), isGif: false});
+    }, 10000)
 
     return () => clearInterval(interval);
   }, [])

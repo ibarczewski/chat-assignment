@@ -19,9 +19,15 @@
         }  
     }
 
-    .text-container {
+    .avatarContainer {
+        padding: 3px 0 0 0;
+    }
+
+    .textContainer {
         display: flex;
         align-items: start;
+        flex-direction: column;
+        margin: 0 0 0 .5rem;
     }
 
     .content {
@@ -30,6 +36,7 @@
 
     .gif {
         width: 35%;
+        margin: 0 0 .5rem 0;
     }
 
 }
