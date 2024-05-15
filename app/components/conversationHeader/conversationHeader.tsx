@@ -10,6 +10,8 @@ const ConversationHeader = () => {
     // I promise I know how to do it! I just took this route because it felt
     // like it wasn't as important as showing off the rest. If you want me to handle this
     // in a more "correct" way to prove my skills, let me know!
+    // PS - as this is only rendered once, I did not see a need to prematurely optimize it
+    // with useMemo, as I believe premature optimization has a cost.
     const user = users.find(user => user.id === 1);
 
     return <div className={styles.container}>

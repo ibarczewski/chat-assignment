@@ -1,6 +1,6 @@
 import { useMessageStore } from '@/app/providers/message-store-provider';
 import styles from './gifPrompt.module.scss';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { giphyService } from '@/app/services/giphyService';
 import LoadingSpinner from '../loadingSpinner/loadingSpinner';
 
@@ -35,17 +35,18 @@ const GifPrompt = ({handleSentGif}: GifPromptProps) => {
         (state) => state,
       )
 
-    const handleOnClick = (gif: GifData) => {
+    // handles sending the gif when one is tapped
+    const handleOnClick = useCallback((gif: GifData) => {
         addMessage(2, { message: gif.images.downsized.url, isGif: true })
         handleSentGif();
-    };
+    }, [addMessage, handleSentGif]);
 
     return <div className={styles.container}>
         {
             isLoading 
             ? <LoadingSpinner />
             :   gifs.map((gif, index) => <button key={index} onClick={() => handleOnClick(gif)}>
-                    <img key={index} src={gif.images.downsized?.url} />
+                    <img alt="trending gif" key={index} src={gif.images.downsized?.url} />
                 </button> )
         }
     </div>

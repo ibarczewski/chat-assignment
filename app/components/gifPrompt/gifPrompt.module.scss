@@ -32,19 +32,19 @@
         }
 
 
-        @media screen and (min-width: 481px) {
+        @media screen and (min-width: $mobile) {
             width: 25%;
         }
 
-        @media screen and (min-width: 1023px) {
+        @media screen and (min-width: $tvScreen) {
             width: 20%;
         }
 
-        @media screen and (min-width: 1023px) {
+        @media screen and (min-width: $wideScreen) {
             width: 10%;
         }
 
-        @media screen and (min-width: 2439px) {
+        @media screen and (min-width: $ultraWideScreen) {
             width: 5%;
         }
 

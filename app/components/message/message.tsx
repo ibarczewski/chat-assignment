@@ -15,11 +15,8 @@ const Message = ({messageGroup}: MessageProps) => {
     
     useEffect(() => {
         const user = users.find(user => user.id === messageGroup.userId);
-        // TODO: fix this!
         setUser(user ? user : null);
-    }, [])
-    
-    const date = format(messageGroup.date, "p");
+    }, [messageGroup.userId])
 
     return user && <div className={styles.container}>
         <div className={styles.avatarContainer}>
@@ -28,9 +25,9 @@ const Message = ({messageGroup}: MessageProps) => {
         <div className={styles.textContainer}>
             <div className={styles.header}>
                 <div className={styles.username}>{user.name}</div>
-                <div className={styles.time}>{date}</div>
+                <div className={styles.time}>{format(messageGroup.date, "p")}</div>
             </div>
-            {messageGroup.messages.map((message, messageIndex) => message.isGif ? <img data-testid="test-image" className={styles.gif} key={messageIndex} src={message.message} /> : <p key={messageIndex} data-testid="test-paragraph" className={styles.content}>{message.message}</p>)}
+            {messageGroup.messages.map((message, messageIndex) => message.isGif ? <img data-testid="test-image" alt="gif message" className={styles.gif} key={messageIndex} src={message.message} /> : <p key={messageIndex} data-testid="test-paragraph" className={styles.content}>{message.message}</p>)}
         </div>
     </div> 
 }
